@@ -1,6 +1,6 @@
 <footer class="snow-footer">
   <div class="container snow-footer__inner">
-
+<h1>HOLA</h1>
     <div class="snow-footer__brand">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="snow-logo snow-logo--lg" aria-label="SNOW* — Inicio">
         SNOW<span class="snow-logo__star">*</span>
