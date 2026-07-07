@@ -29,6 +29,10 @@ $tipos_terms  = get_terms(['taxonomy' => 'snow_tipo', 'hide_empty' => false]);
 
 $badge_map = snow_get_badge_map();
 
+$eventos_visible = 8;
+$eventos_total   = count($snow_eventos_posts);
+$eventos_extra   = max(0, $eventos_total - $eventos_visible);
+
 get_header();
 ?>
 
@@ -126,7 +130,7 @@ get_header();
 
       <div class="eventos-grid" id="eventos-grid">
         <?php if (!empty($snow_eventos_posts)) :
-          foreach ($snow_eventos_posts as $post) :
+          foreach ($snow_eventos_posts as $index => $post) :
             setup_postdata($post);
             $id           = $post->ID;
             $titulo       = get_the_title($id);
@@ -149,7 +153,7 @@ get_header();
             $pais         = ($pais_terms && !is_wp_error($pais_terms)) ? $pais_terms[0]->name : '';
         ?>
         <article
-          class="evento-card"
+          class="evento-card<?php echo $index >= $eventos_visible ? ' evento-card--hidden' : ''; ?>"
           data-pais="<?php echo esc_attr($pais); ?>"
           data-tipo="<?php echo esc_attr($tipo); ?>"
           data-titulo="<?php echo esc_attr(strtolower($titulo)); ?>"
@@ -191,8 +195,14 @@ get_header();
 
                   <?php if (in_array('sold-out', $estados, true)) : ?>
                     <button class="btn btn--disabled btn--sm" disabled aria-disabled="true">AGOTADO</button>
+                  <?php elseif ($link_compra && $link_compra !== '#') : ?>
+                    <a href="<?php echo esc_url($link_compra); ?>"
+                       class="btn btn--lime btn--sm"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       onclick="event.stopPropagation()">COMPRAR</a>
                   <?php else : ?>
-                    <span class="btn btn--lime btn--sm">COMPRAR</span>
+                    <span class="btn btn--disabled btn--sm">PRÓXIMAMENTE</span>
                   <?php endif; ?>
                 </div>
               </div>
@@ -208,6 +218,20 @@ get_header();
         </div>
         <?php endif; ?>
       </div>
+
+      <?php if ($eventos_extra > 0) : ?>
+      <div class="eventos-loadmore-wrap" id="eventos-loadmore-wrap">
+        <button id="eventos-loadmore" class="btn btn--outline"
+                data-step="4"
+                data-visible="<?php echo esc_attr($eventos_visible); ?>"
+                data-total="<?php echo esc_attr($eventos_total); ?>">
+          Ver más shows
+          <span class="btn__counter" id="eventos-loadmore-counter">
+            <?php echo esc_html($eventos_extra); ?> shows más
+          </span>
+        </button>
+      </div>
+      <?php endif; ?>
 
       <div id="no-results" class="no-results" style="display:none;" aria-live="polite">
         <p>No hay shows que coincidan con tu búsqueda</p>
@@ -233,12 +257,13 @@ get_header();
           'order'          => 'ASC',
           'post_status'    => 'publish',
       ]);
-      $talentos_posts  = $talentos_query->posts;
-      $talento_visible = 6;
-      $talento_extra   = max(0, count($talentos_posts) - $talento_visible);
+      $talentos_posts   = $talentos_query->posts;
+      $talentos_visible = 8;
+      $talentos_total   = count($talentos_posts);
+      $talentos_extra   = max(0, $talentos_total - $talentos_visible);
       ?>
 
-      <div class="portfolio-grid" id="portfolio-grid">
+      <div class="eventos-grid" id="talentos-grid">
         <?php foreach ($talentos_posts as $index => $talento_post) :
             $tid      = $talento_post->ID;
             $tnombre  = $talento_post->post_title;
@@ -247,32 +272,47 @@ get_header();
             $ttipo_terms = get_the_terms($tid, 'snow_tipo');
             $ttipo    = ($ttipo_terms && !is_wp_error($ttipo_terms)) ? $ttipo_terms[0]->name : '';
             $tfoto    = get_the_post_thumbnail_url($tid, 'large')
-                        ?: 'https://picsum.photos/seed/talento' . $tid . '/600/400';
+                        ?: 'https://picsum.photos/seed/talento' . $tid . '/600/800';
             $turl     = get_permalink($tid);
         ?>
-        <a href="<?php echo esc_url($turl); ?>"
-           class="portfolio-card<?php echo $index >= $talento_visible ? ' portfolio-card--hidden' : ''; ?>"
-           style="background-image: url('<?php echo esc_url($tfoto); ?>')"
-           aria-label="<?php echo esc_attr($tnombre); ?>"
-        >
-            <div class="portfolio-card__overlay">
-                <?php if ($ttipo) : ?>
-                <span class="portfolio-card__tipo"><?php echo esc_html($ttipo); ?></span>
-                <?php endif; ?>
-                <h3 class="portfolio-card__title"><?php echo esc_html($tnombre); ?></h3>
-                <p class="portfolio-card__meta">
-                    <?php echo esc_html(trim($tbandera . ' ' . $tpais)); ?>
-                </p>
+        <article class="evento-card talento-card<?php echo $index >= $talentos_visible ? ' evento-card--hidden' : ''; ?>">
+          <a href="<?php echo esc_url($turl); ?>"
+             class="evento-card__link"
+             aria-label="Ver perfil de <?php echo esc_attr($tnombre); ?>">
+            <div class="evento-card__image"
+                 style="background-image: url('<?php echo esc_url($tfoto); ?>')"
+                 role="img"
+                 aria-label="<?php echo esc_attr($tnombre); ?>">
+
+              <div class="evento-card__overlay">
+                <div class="evento-card__info">
+                  <?php if ($ttipo) : ?>
+                  <p class="evento-card__subtitle"><?php echo esc_html($ttipo); ?></p>
+                  <?php endif; ?>
+                  <h3 class="evento-card__title"><?php echo esc_html($tnombre); ?></h3>
+                  <div class="evento-card__venue">
+                    <span><?php echo esc_html(trim($tbandera . ' ' . $tpais)); ?></span>
+                  </div>
+                  <span class="btn btn--lime btn--sm">VER PERFIL</span>
+                </div>
+              </div>
             </div>
-        </a>
+          </a>
+        </article>
         <?php endforeach; wp_reset_postdata(); ?>
       </div>
 
-      <?php if ($talento_extra > 0) : ?>
-      <div class="portfolio-loadmore-wrap" id="portfolio-loadmore-wrap">
-        <button id="portfolio-loadmore" class="btn btn--outline">
-          Mostrar más
-          <span class="btn__counter"><?php echo esc_html($talento_extra); ?> talentos más</span>
+      <?php if ($talentos_extra > 0) : ?>
+      <div class="eventos-loadmore-wrap" id="talentos-loadmore-wrap">
+        <button id="talentos-loadmore" class="btn btn--outline"
+                data-step="4"
+                data-visible="<?php echo esc_attr($talentos_visible); ?>"
+                data-total="<?php echo esc_attr($talentos_total); ?>"
+                data-grid="talentos-grid">
+          Ver más talentos
+          <span class="btn__counter" id="talentos-loadmore-counter">
+            <?php echo esc_html($talentos_extra); ?> talentos más
+          </span>
         </button>
       </div>
       <?php endif; ?>

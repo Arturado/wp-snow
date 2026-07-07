@@ -52,26 +52,47 @@
       var selectedPais = countrySelect.value;
       var selectedTipo = typeSelect.value;
       var texto        = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      var hayFiltro    = !!(selectedPais || selectedTipo || texto);
       var visible = 0;
 
-      cards.forEach(function (card) {
+      // Progreso actual de la paginación (puede haber avanzado por clicks en "Ver más")
+      var loadMoreBtn      = document.getElementById('eventos-loadmore');
+      var paginatedVisible = loadMoreBtn ? parseInt(loadMoreBtn.dataset.visible) : cards.length;
+
+      cards.forEach(function (card, idx) {
         var paisMatch   = !selectedPais || card.dataset.pais === selectedPais;
         var tipoMatch   = !selectedTipo || card.dataset.tipo === selectedTipo;
         var cardTitulo  = (card.dataset.titulo  || '').toLowerCase();
         var cardTalento = (card.dataset.talento || '').toLowerCase();
         var textoMatch  = !texto || cardTitulo.indexOf(texto) !== -1 || cardTalento.indexOf(texto) !== -1;
+        var matchFiltro = paisMatch && tipoMatch && textoMatch;
 
-        if (paisMatch && tipoMatch && textoMatch) {
-          card.style.display = '';
-          visible++;
+        if (hayFiltro) {
+          // Con filtro activo: ignorar la paginación, mostrar todas las que matchean
+          card.classList.remove('evento-card--hidden');
+          card.style.display = matchFiltro ? '' : 'none';
         } else {
-          card.style.display = 'none';
+          // Sin filtro: restaurar el estado de paginación según el progreso actual
+          card.style.display = '';
+          if (idx < paginatedVisible) {
+            card.classList.remove('evento-card--hidden');
+          } else {
+            card.classList.add('evento-card--hidden');
+          }
         }
+
+        if (matchFiltro || !hayFiltro) visible++;
       });
+
+      // Ocultar el botón "Ver más" mientras haya un filtro activo
+      var loadMoreWrap = document.getElementById('eventos-loadmore-wrap');
+      if (loadMoreWrap) {
+        loadMoreWrap.style.display = hayFiltro ? 'none' : '';
+      }
 
       // Update "no results" message
       if (noResults) {
-        noResults.style.display = visible === 0 ? 'block' : 'none';
+        noResults.style.display = (hayFiltro && visible === 0) ? 'block' : 'none';
       }
 
       // Recalculate counter
@@ -115,7 +136,7 @@
   }
 })();
 
-// Mostrar más portfolio
+// Mostrar más portfolio (historial en single-talento.php)
 const loadMoreBtn = document.getElementById('portfolio-loadmore');
 if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
@@ -126,3 +147,41 @@ if (loadMoreBtn) {
         document.getElementById('portfolio-loadmore-wrap').remove();
     });
 }
+
+// ===================== VER MÁS GENÉRICO (eventos / talentos) =====================
+function initLoadMore(btnId, wrapId, counterId, hiddenClass) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+        const step  = parseInt(btn.dataset.step) || 4;
+        const total = parseInt(btn.dataset.total) || 0;
+        let visible = parseInt(btn.dataset.visible) || 8;
+
+        const grid = document.getElementById(btn.dataset.grid || 'eventos-grid');
+        const hiddenCards = grid ? grid.querySelectorAll('.' + hiddenClass) : [];
+        let shown = 0;
+
+        hiddenCards.forEach(card => {
+            if (shown < step) {
+                card.classList.remove(hiddenClass);
+                card.style.animation = `fadeInUp 0.4s ease ${shown * 0.08}s both`;
+                shown++;
+                visible++;
+            }
+        });
+
+        btn.dataset.visible = visible;
+
+        const remaining = total - visible;
+        const counter = document.getElementById(counterId);
+        if (counter) counter.textContent = remaining + (btnId.includes('talento') ? ' talentos más' : ' shows más');
+
+        if (visible >= total || (grid && grid.querySelectorAll('.' + hiddenClass).length === 0)) {
+            document.getElementById(wrapId)?.remove();
+        }
+    });
+}
+
+initLoadMore('eventos-loadmore',  'eventos-loadmore-wrap',  'eventos-loadmore-counter',  'evento-card--hidden');
+initLoadMore('talentos-loadmore', 'talentos-loadmore-wrap', 'talentos-loadmore-counter', 'evento-card--hidden');

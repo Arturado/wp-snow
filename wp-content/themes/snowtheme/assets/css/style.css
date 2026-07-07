@@ -265,39 +265,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Asterisk */
 .hero__asterisk-wrap {
-  flex-shrink: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 35%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   overflow: hidden;
+  padding-right: 2rem;
 }
 
 .hero__asterisk {
-  font-size: clamp(140px, 18vw, 280px);
+  font-size: clamp(6rem, 15vw, 14rem);
   font-weight: 900;
-  line-height: 0.85;
+  line-height: 1;
   color: var(--snow-blue);
   display: block;
   will-change: transform, opacity;
-  /* CSS fallback — JS overrides when Anime.js loads */
-  animation: asterisk-entry 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-             asterisk-float 4.5s ease-in-out 1.3s infinite alternate;
+  pointer-events: none;
+  user-select: none;
+  animation: asterisk-entrada 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+             asterisk-float 4s ease-in-out 0.8s infinite;
   opacity: 0;
   text-shadow: 0 0 60px rgba(30, 155, 240, 0.35);
 }
 
-@keyframes asterisk-entry {
-  from { opacity: 0; transform: translateX(180px) rotate(-15deg); }
-  to   { opacity: 1; transform: translateX(0)     rotate(0deg);   }
+@keyframes asterisk-entrada {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes asterisk-float {
-  from { transform: translateY(0)    rotate(0deg);  }
-  to   { transform: translateY(-18px) rotate(9deg); }
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  33%       { transform: translateX(0) translateY(-10px) rotate(6deg); }
+  66%       { transform: translateX(0) translateY(6px) rotate(-4deg); }
 }
-
-/* when JS takes over, disable CSS anim */
-.hero__asterisk.js-animated { animation: none; }
 
 /* ============================================================
    FILTER / BUSCADOR
@@ -944,8 +948,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .container { padding: 0 1.25rem; }
 
   .hero__content { flex-direction: column; padding: 3rem 1.25rem; }
-  .hero__asterisk-wrap { order: -1; }
-  .hero__asterisk { font-size: clamp(90px, 30vw, 140px); }
   .hero__stats { gap: 1.5rem; }
   .hero__stat-number { font-size: 1.5rem; }
 
@@ -959,39 +961,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
-/* Asterisco hero */
-.hero-asterisk {
-    position: absolute;
-    right: 8%;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12rem;
-    font-weight: 900;
-    color: var(--snow-blue);
-    line-height: 1;
-    animation: asterisk-entrada 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-               asterisk-float 4s ease-in-out 0.8s infinite;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-@keyframes asterisk-entrada {
-    from { opacity: 0; transform: translateY(-50%) translateX(80px); }
-    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
-}
-
-@keyframes asterisk-float {
-    0%, 100% { transform: translateY(-50%) rotate(0deg); }
-    33%       { transform: translateY(calc(-50% - 12px)) rotate(8deg); }
-    66%       { transform: translateY(calc(-50% + 8px)) rotate(-5deg); }
-}
-
 @media (max-width: 768px) {
-    .hero-asterisk { display: none; }
+    .hero__asterisk-wrap { display: none; }
 }
 
 .portfolio-card--hidden { display: none; }
+.evento-card--hidden { display: none; }
+
+.eventos-loadmore-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 0;
+    grid-column: 1 / -1;
+}
+
+.talento-card .evento-card__image {
+    background-position: center top;
+}
 
 .btn--outline {
     display: flex; align-items: center; gap: 0.75rem;
