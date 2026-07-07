@@ -185,3 +185,40 @@ function initLoadMore(btnId, wrapId, counterId, hiddenClass) {
 
 initLoadMore('eventos-loadmore',  'eventos-loadmore-wrap',  'eventos-loadmore-counter',  'evento-card--hidden');
 initLoadMore('talentos-loadmore', 'talentos-loadmore-wrap', 'talentos-loadmore-counter', 'evento-card--hidden');
+
+// ===================== MOBILE MENU (header centrado) =====================
+const hamburger = document.getElementById('snow-hamburger');
+const mobileNav = document.getElementById('snow-nav');
+const overlay   = document.getElementById('snow-nav-overlay');
+
+function openMobileMenu() {
+    mobileNav?.classList.add('is-open');
+    hamburger?.classList.add('is-active');
+    overlay?.classList.add('is-active');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    mobileNav?.classList.remove('is-open');
+    hamburger?.classList.remove('is-active');
+    overlay?.classList.remove('is-active');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+}
+
+hamburger?.addEventListener('click', () => {
+    hamburger.classList.contains('is-active') ? closeMobileMenu() : openMobileMenu();
+});
+
+overlay?.addEventListener('click', closeMobileMenu);
+
+// Cerrar al hacer click en cualquier link del nav
+mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+
+// Cerrar con Escape
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMobileMenu();
+});

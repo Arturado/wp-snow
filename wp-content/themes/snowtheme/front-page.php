@@ -320,6 +320,23 @@ get_header();
     </div>
   </section>
 
+  <!-- ===================== ZONA ELEMENTOR ===================== -->
+  <?php
+  // Renderizar el contenido de la página configurada como "inicio estático"
+  // Esto permite editar esta zona con Elementor desde el admin
+  $front_page_id = get_option('page_on_front');
+  if ($front_page_id) {
+      $front_page = get_post($front_page_id);
+      if ($front_page && !empty($front_page->post_content)) {
+          ?>
+          <div class="snow-elementor-zone">
+              <?php echo apply_filters('the_content', $front_page->post_content); ?>
+          </div>
+          <?php
+      }
+  }
+  ?>
+
 </main>
 
 <?php get_footer(); ?>
