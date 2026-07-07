@@ -1,6 +1,5 @@
 <footer class="snow-footer">
   <div class="container snow-footer__inner">
-<h1>HOLA</h1>
     <div class="snow-footer__brand">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="snow-logo snow-logo--lg" aria-label="SNOW* — Inicio">
         SNOW<span class="snow-logo__star">*</span>
@@ -9,12 +8,14 @@
     </div>
 
     <nav class="snow-footer__nav" aria-label="Menú del pie de página">
-      <ul>
-        <li><a href="<?php echo esc_url(home_url('/#shows')); ?>">SHOWS</a></li>
-        <li><a href="#">TALENTOS</a></li>
-        <li><a href="<?php echo esc_url(home_url('/#historial')); ?>">HISTORIAL</a></li>
-        <li><a href="#">NOSOTROS</a></li>
-      </ul>
+      <?php
+      wp_nav_menu([
+          'theme_location' => 'footer-menu',
+          'container'      => false,
+          'fallback_cb'    => false,
+          'depth'          => 1,
+      ]);
+      ?>
     </nav>
 
   </div>

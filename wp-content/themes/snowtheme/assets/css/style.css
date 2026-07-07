@@ -1001,3 +1001,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   NAV DINÁMICO (wp_nav_menu) — item activo
+   ============================================================ */
+.snow-nav__list .current-menu-item .snow-nav__link,
+.snow-nav__list .current_page_item .snow-nav__link {
+    color: var(--snow-lime);
+}
+
+.snow-footer__nav .current-menu-item a,
+.snow-footer__nav .current_page_item a {
+    color: var(--snow-lime);
+}
+
+/* ============================================================
+   PÁGINAS (page.php) — compatibilidad Elementor
+   ============================================================ */
+.snow-page-main {
+    min-height: 60vh;
+    padding-top: var(--header-height);
+}
+
+.snow-page-content {
+    padding: 3rem 0;
+    color: var(--snow-text);
+}

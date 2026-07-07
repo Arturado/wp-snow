@@ -23,12 +23,15 @@
     </button>
 
     <nav class="snow-nav" id="snow-nav" aria-label="Menú principal">
-      <ul class="snow-nav__list">
-        <li><a href="<?php echo esc_url(home_url('/#shows')); ?>" class="snow-nav__link">SHOWS</a></li>
-        <li><a href="#" class="snow-nav__link">TALENTOS</a></li>
-        <li><a href="<?php echo esc_url(home_url('/#historial')); ?>" class="snow-nav__link">HISTORIAL</a></li>
-        <li><a href="#" class="snow-nav__link">NOSOTROS</a></li>
-      </ul>
+      <?php
+      wp_nav_menu([
+          'theme_location' => 'main-menu',
+          'menu_class'     => 'snow-nav__list',
+          'container'      => false,
+          'fallback_cb'    => false,
+          'depth'          => 1,
+      ]);
+      ?>
     </nav>
 
     <a href="<?php echo esc_url(home_url('/#shows')); ?>" class="btn btn--lime btn--pill snow-header__cta">

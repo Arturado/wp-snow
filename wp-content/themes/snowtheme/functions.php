@@ -3,9 +3,26 @@ function snowtheme_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form', 'comment-form', 'gallery', 'caption']);
-    register_nav_menus(['main-menu' => __('Menú Principal', 'snowtheme')]);
+    register_nav_menus([
+        'main-menu'   => __('Menú Principal', 'snowtheme'),
+        'footer-menu' => __('Menú Footer', 'snowtheme'),
+    ]);
+
+    // Soporte para Elementor
+    add_theme_support('align-wide');
+    add_theme_support('editor-styles');
+    add_theme_support('responsive-embeds');
 }
 add_action('after_setup_theme', 'snowtheme_setup');
+
+// Clases propias del theme en los <a> del menú principal (para que el CSS/JS existente los reconozca)
+function snowtheme_nav_menu_link_attributes($atts, $item, $args) {
+    if (!empty($args->theme_location) && $args->theme_location === 'main-menu') {
+        $atts['class'] = 'snow-nav__link';
+    }
+    return $atts;
+}
+add_filter('nav_menu_link_attributes', 'snowtheme_nav_menu_link_attributes', 10, 3);
 
 function snowtheme_assets() {
     wp_enqueue_style('snowtheme-style', get_template_directory_uri() . '/assets/css/style.css', [], '1.0');
