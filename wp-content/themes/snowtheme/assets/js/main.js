@@ -39,23 +39,29 @@
   function initFilter() {
     var countrySelect = document.getElementById('filter-pais');
     var typeSelect    = document.getElementById('filter-tipo');
+    var searchInput   = document.getElementById('filter-search');
     var searchBtn     = document.getElementById('filter-btn');
-    var cards         = document.querySelectorAll('.evento-card');
+    var cards         = document.querySelectorAll('#eventos-grid .evento-card');
     var noResults     = document.getElementById('no-results');
     var counter       = document.getElementById('eventos-counter');
+    var searchTimeout;
 
     if (!countrySelect || !cards.length) return;
 
     function applyFilter() {
       var selectedPais = countrySelect.value;
       var selectedTipo = typeSelect.value;
+      var texto        = (searchInput ? searchInput.value : '').toLowerCase().trim();
       var visible = 0;
 
       cards.forEach(function (card) {
-        var paisMatch = !selectedPais || card.dataset.pais === selectedPais;
-        var tipoMatch = !selectedTipo || card.dataset.tipo === selectedTipo;
+        var paisMatch   = !selectedPais || card.dataset.pais === selectedPais;
+        var tipoMatch   = !selectedTipo || card.dataset.tipo === selectedTipo;
+        var cardTitulo  = (card.dataset.titulo  || '').toLowerCase();
+        var cardTalento = (card.dataset.talento || '').toLowerCase();
+        var textoMatch  = !texto || cardTitulo.indexOf(texto) !== -1 || cardTalento.indexOf(texto) !== -1;
 
-        if (paisMatch && tipoMatch) {
+        if (paisMatch && tipoMatch && textoMatch) {
           card.style.display = '';
           visible++;
         } else {
@@ -87,6 +93,12 @@
     if (searchBtn)     searchBtn.addEventListener('click', applyFilter);
     if (countrySelect) countrySelect.addEventListener('change', applyFilter);
     if (typeSelect)    typeSelect.addEventListener('change', applyFilter);
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(applyFilter, 200);
+      });
+    }
   }
 
   /* ---- Boot ---- */

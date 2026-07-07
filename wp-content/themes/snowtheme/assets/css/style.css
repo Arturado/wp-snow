@@ -314,11 +314,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-.filter-bar__search { flex: 1 1 260px; }
-.filter-bar__selects { display: flex; gap: 0.75rem; flex: 0 0 auto; flex-wrap: wrap; }
+.filter-bar__search { flex: 1; min-width: 0; }
+.filter-bar__selects { display: flex; gap: 1rem; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-wrap: wrap;
+    }
+    .filter-bar__selects {
+        width: 100%;
+    }
+    .filter-bar__selects .filter-select {
+        flex: 1;
+    }
+}
 
 .filter-input,
 .filter-select {
@@ -937,8 +949,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero__stats { gap: 1.5rem; }
   .hero__stat-number { font-size: 1.5rem; }
 
-  .filter-bar { flex-direction: column; align-items: stretch; }
-  .filter-bar__selects { flex-direction: column; }
   .filter-select { min-width: unset; }
 
   .eventos-grid   { grid-template-columns: 1fr; }
