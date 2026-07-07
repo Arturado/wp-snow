@@ -1,0 +1,158 @@
+/* Snow Plugin — Admin Styles */
+
+.snow-meta-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.snow-meta-table th {
+    width: 160px;
+    padding: 8px 12px 8px 0;
+    vertical-align: top;
+    font-weight: 600;
+    color: #3c434a;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.snow-meta-table td {
+    padding: 6px 0;
+}
+
+.snow-meta-table input[type="text"],
+.snow-meta-table input[type="date"],
+.snow-meta-table input[type="time"],
+.snow-meta-table input[type="url"],
+.snow-meta-table textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.snow-meta-table textarea {
+    resize: vertical;
+}
+
+/* Estados */
+.snow-estados-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.snow-estados-list li {
+    margin-bottom: 8px;
+}
+
+.snow-estados-list li label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #3c434a;
+}
+
+.snow-estados-list li label input[type="checkbox"] {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Galería */
+.snow-gallery-preview {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    gap: 8px;
+    margin-bottom: 10px;
+    min-height: 20px;
+}
+
+.snow-gallery-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #dcdcde;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #f6f7f7;
+}
+
+.snow-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.snow-gallery-remove {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.snow-gallery-remove:hover {
+    background: rgba(200, 0, 0, 0.85);
+}
+
+/* Section separator within a metabox */
+.snow-meta-table tr:not(:last-child) td {
+    border-bottom: 1px solid #f0f0f1;
+    padding-bottom: 8px;
+}
+
+/* País / country select — larger text for emoji legibility */
+select[id$="-pais-select"] {
+    font-size: 14px;
+    padding: 4px 6px;
+    margin-bottom: 4px;
+}
+
+/* ---- Columnas CPT evento ---- */
+.column-snow_imagen  { width: 70px; }
+.column-snow_fecha   { width: 120px; }
+.column-snow_ciudad  { width: 130px; }
+.column-snow_talento { width: 130px; }
+.column-snow_tipo    { width: 110px; }
+.column-snow_estados { width: 160px; }
+
+/* ---- Columnas CPT talento ---- */
+.column-snow_foto         { width: 70px; }
+.column-snow_pais_talento { width: 130px; }
+.column-snow_proximos     { width: 80px; text-align: center; }
+.column-snow_total_shows  { width: 80px; text-align: center; }
+.column-snow_redes        { width: 120px; }
+
+/* Thumbnail en listas */
+.snow-col-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+.snow-col-thumb--round { border-radius: 50%; }
+
+/* Count badge */
+.snow-count-badge {
+    display: inline-block;
+    background: #1d2327;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.snow-count-badge--lime { background: #C6F635; color: #000; }

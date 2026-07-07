@@ -1,0 +1,217 @@
+/* ============================================================
+   SNOW* — PDP extras: countdown + modal
+   ============================================================ */
+
+/* ---- Countdown ---- */
+
+.snow-countdown {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(198, 246, 53, 0.25);
+    border-radius: 6px;
+    background: rgba(198, 246, 53, 0.04);
+}
+
+.snow-countdown__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--snow-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.snow-countdown__units {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.snow-countdown__unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+}
+
+.snow-countdown__num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--snow-lime);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.snow-countdown__txt {
+    font-size: 0.65rem;
+    color: var(--snow-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.snow-countdown__sep {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--snow-text-muted);
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.snow-countdown__ended {
+    color: var(--snow-lime);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* ---- Modal overlay ---- */
+
+.snow-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+    animation: snowModalFadeIn 0.2s ease;
+}
+
+.snow-modal-overlay[hidden] {
+    display: none;
+}
+
+@keyframes snowModalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ---- Modal box ---- */
+
+.snow-modal {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    animation: snowModalSlideUp 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes snowModalSlideUp {
+    from { transform: translateY(24px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.snow-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--snow-text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    line-height: 1;
+}
+
+.snow-modal__close:hover { color: #fff; }
+
+/* Header */
+.snow-modal__title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.35rem;
+    color: #fff;
+    padding-right: 2rem;
+}
+
+.snow-modal__title span { color: var(--snow-lime); }
+
+.snow-modal__subtitle {
+    color: var(--snow-text-muted);
+    font-size: 0.88rem;
+    margin: 0 0 1.5rem;
+}
+
+/* Fields */
+.snow-modal__row {
+    display: flex;
+    gap: 1rem;
+}
+
+.snow-modal__row .snow-modal__field { flex: 1; }
+
+.snow-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.snow-modal__field label {
+    font-size: 0.78rem;
+    color: var(--snow-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.snow-modal__field input {
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 0.65rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.snow-modal__field input:focus { border-color: var(--snow-lime); }
+
+/* Message */
+.snow-modal__msg {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.snow-modal__msg--error   { background: rgba(255, 60, 60, 0.15); color: #ff6b6b; }
+.snow-modal__msg--success { background: rgba(198, 246, 53, 0.12); color: var(--snow-lime); }
+
+/* Submit button */
+.snow-modal__btn {
+    width: 100%;
+    padding: 0.85rem;
+    background: var(--snow-lime);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.9rem;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.snow-modal__btn:hover    { opacity: 0.88; }
+.snow-modal__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .snow-modal { padding: 1.5rem; }
+    .snow-modal__row { flex-direction: column; gap: 0; }
+    .snow-countdown__num { font-size: 1.6rem; }
+    .snow-countdown__unit { min-width: 36px; }
+}

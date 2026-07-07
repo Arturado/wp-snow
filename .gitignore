@@ -1,0 +1,13 @@
+# Uploads de WordPress
+wp-content/uploads/
+
+# Archivos de exportación
+*.sql
+*.tar.gz
+*.zip
+
+# Config local
+php-config/
+
+# Docker
+.env
