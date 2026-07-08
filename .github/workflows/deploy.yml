@@ -16,14 +16,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Deploy Theme via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            cd ~/arturodev/snow-wp
-            git pull origin main
-            echo "Deploy completado: $(date)"
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          port: 21
+          local-dir: wp-content/themes/snowtheme/
+          server-dir: /public_html/wp-content/themes/snowtheme/
+          dangerous-clean-slate: false
+
+      - name: Deploy Plugin via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          port: 21
+          local-dir: wp-content/plugins/snow-plugin/
+          server-dir: /public_html/wp-content/plugins/snow-plugin/
+          dangerous-clean-slate: false
