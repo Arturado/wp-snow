@@ -23,6 +23,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: 21
+          protocol: ftps
           local-dir: wp-content/themes/snowtheme/
           server-dir: /public_html/wp-content/themes/snowtheme/
           dangerous-clean-slate: false
@@ -34,6 +35,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: 21
+          protocol: ftps
           local-dir: wp-content/plugins/snow-plugin/
           server-dir: /public_html/wp-content/plugins/snow-plugin/
           dangerous-clean-slate: false
