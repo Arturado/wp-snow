@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) exit;
 
 function snow_enqueue_admin_scripts($hook) {
     global $post;
-    if (($hook === 'post.php' || $hook === 'post-new.php') && isset($post) && in_array($post->post_type, ['evento', 'talento'], true)) {
+    if (($hook === 'post.php' || $hook === 'post-new.php') && isset($post) && in_array($post->post_type, ['evento', 'talento', 'video'], true)) {
         wp_enqueue_media();
         wp_enqueue_style('snow-admin-css', SNOW_PLUGIN_URL . 'assets/css/admin.css');
     }

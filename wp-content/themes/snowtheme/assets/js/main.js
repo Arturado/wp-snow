@@ -223,3 +223,62 @@ mobileNav?.querySelectorAll('a').forEach(link => {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMobileMenu();
 });
+
+// ===================== ZONA AUDIOVISUAL — Modal YouTube =====================
+(function() {
+    const modal    = document.getElementById('snow-video-modal');
+    const overlay  = document.getElementById('snow-video-modal-overlay');
+    const closeBtn = document.getElementById('snow-video-modal-close');
+    const iframe   = document.getElementById('snow-video-iframe');
+
+    if (!modal) return;
+
+    function openVideo(ytId) {
+        if (!ytId) return;
+        iframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo() {
+        modal.setAttribute('hidden', '');
+        iframe.src = '';
+        document.body.style.overflow = '';
+    }
+
+    // Clicks en cards
+    document.querySelectorAll('.video-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            openVideo(card.dataset.youtubeId);
+        });
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') openVideo(card.dataset.youtubeId);
+        });
+    });
+
+    overlay?.addEventListener('click', closeVideo);
+    closeBtn?.addEventListener('click', closeVideo);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeVideo();
+    });
+
+    // Filtro por tabs en página audiovisual
+    const tabs = document.querySelectorAll('.audiovisual-tab');
+    if (tabs.length) {
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+
+                const cat = tab.dataset.cat;
+                document.querySelectorAll('#audiovisual-grid .video-card').forEach(function(card) {
+                    if (!cat || card.dataset.cat === cat) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+})();
