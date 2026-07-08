@@ -1303,7 +1303,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .hero__stat-number--blue { color: #0abffd; }
-.hero__stat-number--pink { color: #fa4eab; }
+.hero__stat-number--pink { color: #ffffff; }
 
 @media (max-width: 900px) {
     .hero__asterisk-wrap {
