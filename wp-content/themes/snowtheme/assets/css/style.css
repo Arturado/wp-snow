@@ -283,47 +283,89 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--snow-text-muted);
 }
 
-/* Asterisk */
+/* ============================================================
+   ASTERISCO HERO — grande, mitad derecha cortada
+   ============================================================ */
+
+/* Wrap: centrado vertical, pegado al borde derecho */
 .hero__asterisk-wrap {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 35%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  overflow: hidden;
-  padding-right: 2rem;
+    position: absolute;
+    top: auto;
+    right: -40%;
+    transform: none;
+    bottom: -95%;
+    max-width: none;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    pointer-events: none;
+    overflow: visible;
+    padding-right: 0;
+    opacity: 1;
 }
 
+/* Asterisco: enorme, gradiente metálico azul */
 .hero__asterisk {
-  font-size: clamp(6rem, 15vw, 14rem);
-  font-weight: 900;
-  line-height: 1;
-  display: block;
-  will-change: transform, opacity;
-  pointer-events: none;
-  user-select: none;
-  animation: asterisk-entrada 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             asterisk-float 4s ease-in-out 0.8s infinite;
-  opacity: 0;
-  text-shadow: 0 0 60px rgba(30, 155, 240, 0.35);
+    font-size: clamp(40rem, 90vw, 80rem);
+    font-weight: 900;
+    line-height: 1;
+    display: inline-block;
+    will-change: transform, opacity;
+    pointer-events: none;
+    user-select: none;
+    background: linear-gradient(
+        135deg,
+        #7ee8ff 0%,
+        #0abffd 25%,
+        #ffffff 45%,
+        #0abffd 60%,
+        #0077b6 80%,
+        #48cae4 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    animation:
+        asterisk-entrada 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+        asterisk-float 4s ease-in-out 0.8s infinite;
+    opacity: 0;
+}
 
-  /* Gradiente metálico azul */
-  background: linear-gradient(
-    135deg,
-    #7ee8ff 0%,
-    #0abffd 25%,
-    #ffffff 45%,
-    #0abffd 60%,
-    #0077b6 80%,
-    #48cae4 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+/* Tablet */
+@media (max-width: 1024px) {
+    .hero__asterisk-wrap {
+        right: -32%;
+    }
+    .hero__asterisk {
+        font-size: clamp(18rem, 50vw, 36rem);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero__asterisk-wrap {
+        display: flex;
+        top: 50%;
+        bottom: auto;
+        right: -38%;
+        transform: translateY(-50%);
+        opacity: 1;
+    }
+    .hero__asterisk {
+        font-size: clamp(12rem, 55vw, 20rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__asterisk-wrap {
+        right: 0%;
+        top: 20%;
+    }
+    .hero__asterisk {
+        font-size: clamp(10rem, 50vw, 16rem);
+    }
 }
 
 @keyframes asterisk-entrada {
@@ -995,10 +1037,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
-@media (max-width: 768px) {
-    .hero__asterisk-wrap { display: none; }
-}
-
 .portfolio-card--hidden { display: none; }
 .evento-card--hidden { display: none; }
 
@@ -1276,41 +1314,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
 }
 
-/* ============================================================
-   ASTERISCO HERO — visible en mobile (versión reducida)
-   ============================================================ */
-@media (max-width: 768px) {
-    .hero__asterisk-wrap {
-        display: flex;
-        position: absolute;
-        right: -1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        max-width: 45%;
-        opacity: 1;
-        pointer-events: none;
-    }
-
-    .hero__asterisk {
-        font-size: clamp(7rem, 30vw, 11rem);
-    }
-}
-
-@media (max-width: 480px) {
-    .hero__asterisk {
-        font-size: clamp(6rem, 28vw, 9rem);
-    }
-}
-
 .hero__stat-number--blue { color: #0abffd; }
 .hero__stat-number--pink { color: #ffffff; }
-
-@media (max-width: 900px) {
-    .hero__asterisk-wrap {
-        top: 8%; /* antes era 50%, lo subimos cerca del título */
-        transform: none;
-    }
-}
 
 @media (max-width: 768px) {
     .snow-footer {
