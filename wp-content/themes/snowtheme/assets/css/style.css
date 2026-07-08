@@ -1310,3 +1310,67 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         letter-spacing: 0.1em;
     }
 }
+
+@media (max-width: 768px) {
+    .snow-footer__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .snow-footer__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .snow-footer__menu li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .snow-footer__menu li a {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (min-width: 769px) {
+    .snow-footer__inner {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .snow-footer__brand {
+        flex: 1;
+    }
+
+    .snow-footer__nav {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .snow-footer__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.75rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .snow-footer__menu li a {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+}
