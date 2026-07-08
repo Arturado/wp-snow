@@ -1270,3 +1270,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .hero__stat-number--blue { color: #0abffd; }
 .hero__stat-number--pink { color: #fa4eab; }
+
+@media (max-width: 900px) {
+    .hero__asterisk-wrap {
+        top: 8%; /* antes era 50%, lo subimos cerca del título */
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .snow-footer {
+        text-align: center;
+    }
+
+    .snow-footer__logo,
+    .snow-footer__tagline,
+    .snow-footer__copy {
+        text-align: center;
+    }
+
+    .snow-footer__nav,
+    .snow-footer__menu {
+        align-items: center;
+        text-align: center;
+    }
+
+    .snow-footer__menu li a {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}
+
+@media (min-width: 901px) {
+    .snow-nav__list li a,
+    .snow-nav__link {
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}
