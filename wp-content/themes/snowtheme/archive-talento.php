@@ -5,7 +5,7 @@
 
     <div class="talentos-header">
       <h1 class="talentos-header__title">TALENTOS<span>*</span></h1>
-      <p class="talentos-header__sub">Artistas que han pasado por SNOW*</p>
+      <p class="talentos-header__sub">HAN CONFIADO EN SNOW *</p>
     </div>
 
     <div class="talentos-grid">
