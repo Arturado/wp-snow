@@ -17,26 +17,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy Theme via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy Theme via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: 21
-          protocol: ftps
-          local-dir: wp-content/themes/snowtheme/
-          server-dir: /public_html/wp-content/themes/snowtheme/
-          dangerous-clean-slate: false
+          port: 22
+          local_path: wp-content/themes/snowtheme/*
+          remote_path: /public_html/wp-content/themes/snowtheme/
+          sftp_only: true
 
-      - name: Deploy Plugin via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy Plugin via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: 21
-          protocol: ftps
-          local-dir: wp-content/plugins/snow-plugin/
-          server-dir: /public_html/wp-content/plugins/snow-plugin/
-          dangerous-clean-slate: false
+          port: 22
+          local_path: wp-content/plugins/snow-plugin/*
+          remote_path: /public_html/wp-content/plugins/snow-plugin/
+          sftp_only: true
