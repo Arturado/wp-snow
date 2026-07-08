@@ -13,6 +13,7 @@ define('SNOW_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('SNOW_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once SNOW_PLUGIN_PATH . 'includes/helpers.php';
+require_once SNOW_PLUGIN_PATH . 'includes/uploads.php';
 require_once SNOW_PLUGIN_PATH . 'includes/cpt-eventos.php';
 require_once SNOW_PLUGIN_PATH . 'includes/cpt-talento.php';
 require_once SNOW_PLUGIN_PATH . 'includes/taxonomies.php';

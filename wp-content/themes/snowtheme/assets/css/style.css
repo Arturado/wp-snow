@@ -109,7 +109,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .snow-logo--lg { font-size: 2.2rem; }
 
-.snow-logo__star { color: var(--snow-blue); }
+/* Logo SVG */
+.snow-logo__svg {
+    height: 36px;   /* altura fija, el ancho se calcula automáticamente */
+    width: auto;
+    display: block;
+    transition: opacity 0.2s;
+}
+
+.snow-logo:hover .snow-logo__svg {
+    opacity: 0.85;
+}
+
+.snow-logo__svg--footer {
+    height: 32px;
+}
+
+@media (max-width: 768px) {
+    .snow-logo__svg {
+        height: 28px;
+    }
+}
 
 /* ============================================================
    HEADER
@@ -281,7 +301,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: clamp(6rem, 15vw, 14rem);
   font-weight: 900;
   line-height: 1;
-  color: var(--snow-blue);
   display: block;
   will-change: transform, opacity;
   pointer-events: none;
@@ -290,6 +309,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
              asterisk-float 4s ease-in-out 0.8s infinite;
   opacity: 0;
   text-shadow: 0 0 60px rgba(30, 155, 240, 0.35);
+
+  /* Gradiente metálico azul */
+  background: linear-gradient(
+    135deg,
+    #7ee8ff 0%,
+    #0abffd 25%,
+    #ffffff 45%,
+    #0abffd 60%,
+    #0077b6 80%,
+    #48cae4 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 @keyframes asterisk-entrada {
