@@ -7,6 +7,7 @@ on:
     paths:
       - 'wp-content/themes/snowtheme/**'
       - 'wp-content/plugins/snow-plugin/**'
+      - '.github/workflows/**'
 
 jobs:
   deploy:
