@@ -77,7 +77,7 @@ function snow_evento_column_content($column, $post_id) {
                 break;
             }
             $badge_styles = [
-                'nuevo'           => 'background:#C6F635;color:#1a3a00;',
+                'nuevo'           => 'background:#b2d430;color:#1a3a00;',
                 'destacado'       => 'background:#f0c40d;color:#3a2000;',
                 'ultimos-tickets' => 'background:#e05c2a;color:#fff;',
                 'sold-out'        => 'background:#d63638;color:#fff;',

@@ -52,7 +52,7 @@ get_header();
           </span>
         </h1>
         <p class="hero__desc">
-          Productora de eventos en 15 países. Stand Up, Música, Festivales y Conferencias
+          Productora de eventos en 15 países. Stand Up, Música y Conferencias
           para los mejores talentos de habla hispana.
         </p>
         <div class="hero__stats" aria-label="Estadísticas">
@@ -61,11 +61,11 @@ get_header();
             <span class="hero__stat-label">Shows producidos</span>
           </div>
           <div class="hero__stat">
-            <strong class="hero__stat-number">15</strong>
+            <strong class="hero__stat-number hero__stat-number--blue">15</strong>
             <span class="hero__stat-label">Países</span>
           </div>
           <div class="hero__stat">
-            <strong class="hero__stat-number">10</strong>
+            <strong class="hero__stat-number hero__stat-number--pink">10</strong>
             <span class="hero__stat-label">Años</span>
           </div>
         </div>

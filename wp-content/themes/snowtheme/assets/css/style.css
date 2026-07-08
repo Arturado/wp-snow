@@ -7,7 +7,7 @@
   --snow-bg:          #0a0a0a;
   --snow-text:        #ffffff;
   --snow-text-muted:  #999999;
-  --snow-lime:        #C6F635;
+  --snow-lime:        #b2d430;
   --snow-blue:        #1E9BF0;
   --snow-border:      rgba(255, 255, 255, 0.1);
   --snow-overlay:     rgba(0, 0, 0, 0.72);
@@ -1250,23 +1250,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         display: flex;
         position: absolute;
         right: -1rem;
-        top: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
         max-width: 45%;
-        opacity: 0.35;
+        opacity: 1;
         pointer-events: none;
     }
 
     .hero__asterisk {
-        font-size: clamp(4rem, 22vw, 7rem);
+        font-size: clamp(7rem, 30vw, 11rem);
     }
 }
 
 @media (max-width: 480px) {
-    .hero__asterisk-wrap {
-        opacity: 0.25;
-    }
-
     .hero__asterisk {
-        font-size: clamp(3rem, 18vw, 5rem);
+        font-size: clamp(6rem, 28vw, 9rem);
     }
 }
+
+.hero__stat-number--blue { color: #0abffd; }
+.hero__stat-number--pink { color: #fa4eab; }

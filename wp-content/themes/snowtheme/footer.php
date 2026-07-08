@@ -2,9 +2,9 @@
   <div class="container snow-footer__inner">
     <div class="snow-footer__brand">
       <a href="<?php echo esc_url(home_url('/')); ?>" class="snow-logo snow-logo--lg" aria-label="SNOW* — Inicio">
-        SNOW<span class="snow-logo__star">*</span>
+        SNOW<span class="snow-logo__star">*</span> ENTERTAINMENT
       </a>
-      <p class="snow-footer__tagline">Productora de eventos en 15 países.<br>Stand Up · Música · Festivales · Conferencias.</p>
+      <p class="snow-footer__tagline">Productora de eventos en 15 países.<br>Stand Up · Música · Conferencias.</p>
     </div>
 
     <nav class="snow-footer__nav" aria-label="Menú del pie de página">
