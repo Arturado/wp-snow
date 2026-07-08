@@ -245,8 +245,7 @@ get_header();
     <div class="container">
       <div class="section-header">
         <div>
-          <h2 class="section-title">HAN PASADO POR SNOW<span class="text-blue">*</span></h2>
-          <p class="section-subtitle">Nuestros talentos</p>
+          <h2 class="section-title">HAN CONFIADO EN SNOW<span class="text-blue">*</span></h2>
         </div>
       </div>
 
