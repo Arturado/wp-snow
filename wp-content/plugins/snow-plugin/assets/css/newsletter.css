@@ -1,0 +1,200 @@
+/* ===================== SNOW NEWSLETTER ===================== */
+.snow-newsletter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: #C6F635;
+    padding: 4rem;
+    border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Columna izquierda */
+.snow-newsletter__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: #000;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+}
+
+.snow-newsletter__desc {
+    font-size: 1rem;
+    color: #1a1a1a;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+.snow-newsletter__proof {
+    font-size: 0.95rem;
+    color: #000;
+    margin: 0;
+}
+
+/* Card formulario */
+.snow-newsletter__card {
+    background: #111;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Fields */
+.snow-nl-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.snow-nl-field label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.snow-nl-field input[type="email"],
+.snow-nl-select-wrap select {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.snow-nl-field input[type="email"]:focus,
+.snow-nl-select-wrap select:focus {
+    border-color: #C6F635;
+}
+
+/* Select wrapper con flecha custom */
+.snow-nl-select-wrap {
+    position: relative;
+}
+
+.snow-nl-select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+    font-size: 0.9rem;
+}
+
+/* Radios estilizados */
+.snow-nl-radios {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.snow-nl-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.snow-nl-radio:has(input:checked) {
+    border-color: #C6F635;
+    background: rgba(198, 246, 53, 0.06);
+}
+
+.snow-nl-radio input[type="radio"] {
+    display: none;
+}
+
+.snow-nl-radio__custom {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+}
+
+.snow-nl-radio:has(input:checked) .snow-nl-radio__custom {
+    border-color: #C6F635;
+    background: radial-gradient(circle, #C6F635 40%, transparent 40%);
+}
+
+.snow-nl-radio__label {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.snow-nl-radio__label em {
+    color: #999;
+    font-style: normal;
+}
+
+/* Botón */
+.snow-nl-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: #C6F635;
+    color: #000;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 0.25rem;
+}
+
+.snow-nl-btn:hover    { opacity: 0.88; }
+.snow-nl-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Legal */
+.snow-nl-legal {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Mensajes */
+.snow-nl-msg {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 6px;
+}
+
+.snow-nl-msg[hidden] { display: none; }
+.snow-nl-msg--error   { background: rgba(255,60,60,0.15); color: #ff6b6b; }
+.snow-nl-msg--success { background: rgba(198,246,53,0.12); color: #C6F635; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .snow-newsletter {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.5rem;
+        gap: 2rem;
+    }
+}

@@ -22,6 +22,7 @@ require_once SNOW_PLUGIN_PATH . 'includes/shortcodes.php';
 require_once SNOW_PLUGIN_PATH . 'includes/admin-columns.php';
 require_once SNOW_PLUGIN_PATH . 'includes/schema.php';
 require_once SNOW_PLUGIN_PATH . 'includes/suscriptores.php';
+require_once SNOW_PLUGIN_PATH . 'includes/newsletter.php';
 
 register_activation_hook(__FILE__, 'snow_plugin_activar');
 function snow_plugin_activar() {
@@ -30,5 +31,6 @@ function snow_plugin_activar() {
     snow_registrar_taxonomias();
     snow_insertar_terminos_defecto();
     snow_crear_tabla_suscriptores();
+    snow_crear_tabla_newsletter();
     flush_rewrite_rules();
 }
