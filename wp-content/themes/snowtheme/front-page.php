@@ -116,6 +116,10 @@ get_header();
     </div>
   </section>
 
+<div class="banner-donacion">
+  <p>Ayuda a los Afectados por el terremoto en Venezuela🇻🇪. Haz Click <a href="https://dona.yummyrides.com/" target="_blank" rel="noopener noreferrer">acá</a> para donar a través de Yummy Rides</p>
+</div>
+
   <!-- ===================== PRÓXIMOS SHOWS ===================== -->
   <section class="eventos-section">
     <div class="container">

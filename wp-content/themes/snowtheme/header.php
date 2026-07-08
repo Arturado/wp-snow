@@ -9,6 +9,9 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class('snow-body'); ?>>
+<div class="topbar-donacion">
+  <p>Ayuda a los Afectados por el terremoto en Venezuela🇻🇪. Haz Click <a href="https://dona.yummyrides.com/" target="_blank" rel="noopener noreferrer">acá</a> para donar a través de Yummy Rides</p>
+</div>
 <header class="snow-header" id="snow-header">
   <div class="container snow-header__inner">
 

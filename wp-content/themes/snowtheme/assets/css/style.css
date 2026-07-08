@@ -1409,4 +1409,83 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     }
 }/* ftp deploy test */
 /* ftps test */
-/* sftp test */
+
+.topbar-donacion {
+    background: #6b21a8;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+}
+
+.topbar-donacion p {
+    margin: 0;
+}
+
+.topbar-donacion a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.topbar-donacion a:hover {
+    color: #e9d5ff;
+}
+
+.topbar-donacion--home {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+    .topbar-donacion {
+        font-size: 12.5px;
+        padding: 8px 12px;
+    }
+}
+
+.snow-header {
+    top: 0; /* resetear al valor original */
+}
+
+body {
+    padding-top: 0; /* resetear */
+}
+
+/* Topbar fijo arriba */
+.topbar-donacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001; /* por encima del header */
+}
+
+/* Header empujado debajo del topbar */
+.snow-header {
+    top: 37px; /* altura del topbar */
+}
+
+/* Compensar en el body para que el contenido no quede tapado */
+body.snow-body {
+    padding-top: 37px;
+}
+
+.banner-donacion {
+    background: #6b21a8;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.banner-donacion p { margin: 0; }
+
+.banner-donacion a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+}
