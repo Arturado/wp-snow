@@ -4,7 +4,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
-    background: #b2d430;
+    background: #30b8e7;
     padding: 4rem;
     border-radius: 0;
     width: 100%;
@@ -78,7 +78,7 @@
 
 .snow-nl-field input[type="email"]:focus,
 .snow-nl-select-wrap select:focus {
-    border-color: #b2d430;
+    border-color: #30b8e7;
 }
 
 /* Select wrapper con flecha custom */
@@ -116,7 +116,7 @@
 }
 
 .snow-nl-radio:has(input:checked) {
-    border-color: #b2d430;
+    border-color: #30b8e7;
     background: rgba(198, 246, 53, 0.06);
 }
 
@@ -137,8 +137,8 @@
 }
 
 .snow-nl-radio:has(input:checked) .snow-nl-radio__custom {
-    border-color: #b2d430;
-    background: radial-gradient(circle, #b2d430 40%, transparent 40%);
+    border-color: #30b8e7;
+    background: radial-gradient(circle, #30b8e7 40%, transparent 40%);
 }
 
 .snow-nl-radio__label {
@@ -155,7 +155,7 @@
 .snow-nl-btn {
     width: 100%;
     padding: 0.9rem;
-    background: #b2d430;
+    background: #30b8e7;
     color: #000;
     font-weight: 900;
     font-size: 0.9rem;
@@ -188,7 +188,7 @@
 
 .snow-nl-msg[hidden] { display: none; }
 .snow-nl-msg--error   { background: rgba(255,60,60,0.15); color: #ff6b6b; }
-.snow-nl-msg--success { background: rgba(198,246,53,0.12); color: #b2d430; }
+.snow-nl-msg--success { background: rgba(198,246,53,0.12); color: #30b8e7; }
 
 /* Responsive */
 @media (max-width: 768px) {
