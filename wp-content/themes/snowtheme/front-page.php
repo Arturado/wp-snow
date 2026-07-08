@@ -158,6 +158,7 @@ get_header();
           data-tipo="<?php echo esc_attr($tipo); ?>"
           data-titulo="<?php echo esc_attr(strtolower($titulo)); ?>"
           data-talento="<?php echo esc_attr(strtolower($talento_nombre)); ?>"
+          data-ciudad="<?php echo esc_attr(strtolower($ciudad)); ?>"
         >
           <a
             href="<?php echo esc_url(home_url('/evento/' . $slug)); ?>"

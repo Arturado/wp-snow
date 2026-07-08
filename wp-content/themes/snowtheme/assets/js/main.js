@@ -64,7 +64,8 @@
         var tipoMatch   = !selectedTipo || card.dataset.tipo === selectedTipo;
         var cardTitulo  = (card.dataset.titulo  || '').toLowerCase();
         var cardTalento = (card.dataset.talento || '').toLowerCase();
-        var textoMatch  = !texto || cardTitulo.indexOf(texto) !== -1 || cardTalento.indexOf(texto) !== -1;
+        var cardCiudad  = (card.dataset.ciudad || '').toLowerCase();
+        var textoMatch  = !texto || cardTitulo.indexOf(texto) !== -1 || cardTalento.indexOf(texto) !== -1 || cardCiudad.indexOf(texto) !== -1;
         var matchFiltro = paisMatch && tipoMatch && textoMatch;
 
         if (hayFiltro) {
