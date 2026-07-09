@@ -254,14 +254,28 @@ get_header();
       </div>
 
       <?php
-      $talentos_query = new WP_Query([
+      // Talentos con orden asignado, ordenados numéricamente ASC
+      $talentos_con_orden = new WP_Query([
           'post_type'      => 'talento',
           'posts_per_page' => -1,
+          'post_status'    => 'publish',
+          'meta_key'       => '_talento_orden',
+          'orderby'        => 'meta_value_num',
+          'order'          => 'ASC',
+      ]);
+      // Talentos sin orden asignado (van al final)
+      $talentos_sin_orden = new WP_Query([
+          'post_type'      => 'talento',
+          'posts_per_page' => -1,
+          'post_status'    => 'publish',
+          'meta_query'     => [[
+              'key'     => '_talento_orden',
+              'compare' => 'NOT EXISTS',
+          ]],
           'orderby'        => 'title',
           'order'          => 'ASC',
-          'post_status'    => 'publish',
       ]);
-      $talentos_posts   = $talentos_query->posts;
+      $talentos_posts   = array_merge($talentos_con_orden->posts, $talentos_sin_orden->posts);
       $talentos_visible = 8;
       $talentos_total   = count($talentos_posts);
       $talentos_extra   = max(0, $talentos_total - $talentos_visible);

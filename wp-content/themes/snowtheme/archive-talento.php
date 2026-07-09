@@ -9,10 +9,35 @@
     </div>
 
     <div class="talentos-grid">
-      <?php if (have_posts()) : while (have_posts()) : the_post();
-        $id      = get_the_ID();
-        $nombre  = get_the_title();
-        $url     = get_permalink();
+      <?php
+      // Talentos con orden asignado, ordenados numéricamente ASC
+      $talentos_con_orden = new WP_Query([
+          'post_type'      => 'talento',
+          'posts_per_page' => -1,
+          'post_status'    => 'publish',
+          'meta_key'       => '_talento_orden',
+          'orderby'        => 'meta_value_num',
+          'order'          => 'ASC',
+      ]);
+      // Talentos sin orden asignado (van al final)
+      $talentos_sin_orden = new WP_Query([
+          'post_type'      => 'talento',
+          'posts_per_page' => -1,
+          'post_status'    => 'publish',
+          'meta_query'     => [[
+              'key'     => '_talento_orden',
+              'compare' => 'NOT EXISTS',
+          ]],
+          'orderby'        => 'title',
+          'order'          => 'ASC',
+      ]);
+      $talentos_posts = array_merge($talentos_con_orden->posts, $talentos_sin_orden->posts);
+
+      if (!empty($talentos_posts)) :
+        foreach ($talentos_posts as $talento_post) :
+        $id      = $talento_post->ID;
+        $nombre  = $talento_post->post_title;
+        $url     = get_permalink($id);
         $foto    = get_the_post_thumbnail_url($id, 'large');
         $pais    = get_post_meta($id, '_talento_pais', true);
         $bandera = get_post_meta($id, '_talento_bandera', true);
@@ -36,19 +61,13 @@
             <?php endif; ?>
           </div>
         </a>
-      <?php endwhile;
+      <?php endforeach;
       else : ?>
         <div class="talentos-empty">
           <p>Próximamente presentaremos a nuestros artistas.</p>
         </div>
       <?php endif; ?>
     </div>
-
-    <?php the_posts_pagination([
-      'mid_size'  => 2,
-      'prev_text' => '&larr; Anterior',
-      'next_text' => 'Siguiente &rarr;',
-    ]); ?>
 
   </div>
 </main>
